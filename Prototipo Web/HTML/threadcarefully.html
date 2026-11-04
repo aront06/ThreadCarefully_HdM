@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thread Carefully | Scale. Fall. Rage. Repeat.</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../CSS/estilosthreadcarefully.css">
+</head>
+<body>
+
+    <!-- Site Header with Animated Silkworm Dropdown -->
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="nav-left">
+                <!-- El propio gusano de seda bajando del menú con animación -->
+                <div class="silkworm-nav-unit" id="silkwormNavUnit">
+                    <!-- Hilo de seda vertical que se estira al caer el gusano -->
+                    <div class="silkworm-drop-thread"></div>
+
+                    <!-- El propio gusano de seda (reposa arriba y baja colgando hasta el final del menú) -->
+                    <div class="silkworm-actor-mascot" title="¡Pasa el ratón para que baje el gusano de seda!">
+                        <img src="../Images/silkworm.svg" alt="Silkworm mascot">
+                    </div>
+
+                    <!-- Botón base del menú -->
+                    <div class="silkworm-btn-base" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="silkworm-btn-label" style="padding-left: 56px;">Menu <span style="font-size:0.9rem;">▾</span></span>
+                    </div>
+
+                    <!-- Desplegable con las opciones que van bajando -->
+                    <div class="silkworm-dropdown-panel" id="silkwormDropdownPanel">
+                        <div class="silkworm-menu-sheet">
+                            <div class="silkworm-menu-title">
+                                <span>🧵 Silk Thread Navigation</span>
+                            </div>
+                            <ul class="silkworm-items-list">
+                                <li class="silkworm-drop-item" style="--drop-order: 1;">
+                                    <a href="threadcarefully.html" class="silkworm-menu-link active">
+                                        <span class="opt-icon">🏠</span>
+                                        <div class="opt-info">
+                                            <span class="opt-title">Home</span>
+                                            <span class="opt-sub">Main project showcase</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="silkworm-drop-item" style="--drop-order: 2;">
+                                    <a href="who-we-are.html" class="silkworm-menu-link">
+                                        <span class="opt-icon">👥</span>
+                                        <div class="opt-info">
+                                            <span class="opt-title">Who We Are?</span>
+                                            <span class="opt-sub">HdM student game studio</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="silkworm-drop-item" style="--drop-order: 3;">
+                                    <a href="faq.html" class="silkworm-menu-link">
+                                        <span class="opt-icon">❓</span>
+                                        <div class="opt-info">
+                                            <span class="opt-title">FAQ &amp; Specs</span>
+                                            <span class="opt-sub">Questions &amp; system reqs</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="silkworm-drop-item" style="--drop-order: 4;">
+                                    <a href="legal-privacy.html" class="silkworm-menu-link">
+                                        <span class="opt-icon">⚖️</span>
+                                        <div class="opt-info">
+                                            <span class="opt-title">Legal &amp; Privacy</span>
+                                            <span class="opt-sub">Terms, Privacy &amp; Cookies</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="silkworm-drop-item" style="--drop-order: 5;">
+                                    <a href="https://store.steampowered.com" target="_blank" rel="noopener noreferrer" class="silkworm-menu-link steam-opt">
+                                        <span class="opt-icon"><img src="../Images/Steam_logo.svg" alt="Steam" width="18" height="18" style="filter:brightness(0) invert(1);"></span>
+                                        <div class="opt-info">
+                                            <span class="opt-title">Wishlist on Steam</span>
+                                            <span class="opt-sub">Support on Steam Store</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="silkworm-sheet-footer">
+                                <span>🐛 Spun with silk by HdM students</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="threadcarefully.html" class="brand-title">Thread Carefully</a>
+            </div>
+
+            <!-- Sketch Nav Center Links -->
+            <ul class="nav-center-links">
+                <li><a href="threadcarefully.html" class="active">The Game</a></li>
+                <li><a href="who-we-are.html">About Us</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="#news">Community</a></li>
+                <li><a href="who-we-are.html#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-right">
+                <a href="https://store.steampowered.com" target="_blank" rel="noopener noreferrer" class="btn-wishlist">
+                    <img src="../Images/Steam_logo.svg" alt="Steam">
+                    <span>Wishlist on Steam</span>
+                </a>
+                <div class="lang-selector" title="Language Selector">
+                    <span>🌐 EN</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sub-header Status Bar from Sketch image.png -->
+    <div class="status-bar">
+        <div class="status-bar-content">
+            <div class="status-item">
+                All Systems Operational <span class="check">✓</span>
+            </div>
+            <div class="status-item">
+                GAME PLATFORMS: • PC • Steam Deck Verified
+            </div>
+            <div class="status-item">
+                GAME MODES: • Singleplayer 2.5D
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Wrapper (Left Social Media Strip + Main Content) -->
+    <div class="page-wrapper">
+        <!-- Left Vertical Social Media Strip from Sketch image.png -->
+        <aside class="vertical-social-strip">
+            <span class="social-strip-label">Social Media</span>
+            <a href="https://www.instagram.com/threadcarefully_hdm/" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="Instagram">
+                <img src="../Images/Instagram_logo.svg" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="Facebook">
+                <img src="../Images/Facebook_logo.svg" alt="Facebook">
+            </a>
+            <a href="https://x.com/thread_hdm" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="X (Twitter)">
+                <img src="../Images/X_logo.svg" alt="X">
+            </a>
+            <a href="https://www.youtube.com/@ThreadCarefully_HdM" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="YouTube">
+                <img src="../Images/YouTube_logo.svg" alt="YouTube">
+            </a>
+            <a href="https://www.tiktok.com/@threadcarefully_hdm" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="TikTok">
+                <img src="../Images/TikTok_logo.svg" alt="TikTok">
+            </a>
+            <a href="https://www.twitch.tv" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="Twitch">
+                <img src="../Images/Twitch_logo.svg" alt="Twitch">
+            </a>
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-icon-link" title="Discord">
+                <img src="../Images/Discord_logo.svg" alt="Discord">
+            </a>
+        </aside>
+
+        <!-- Main Layout Area -->
+        <main class="main-layout">
+            <!-- Hero Section with Carousel Arrows -->
+            <section class="hero-container">
+                <button class="carousel-arrow prev" aria-label="Previous slide">&lt;</button>
+                <button class="carousel-arrow next" aria-label="Next slide">&gt;</button>
+
+                <div class="hero-grid">
+                    <!-- Left Hero Content (image.png & image2.png) -->
+                    <div class="hero-text-side">
+                        <h1 class="hero-main-title">Thread Carefully</h1>
+                        <h2 class="hero-tagline">Scale. Fall. Rage. Repeat.</h2>
+                        <h3 class="hero-mechanic-sub">2.5D Physics-based swing game mechanics.</h3>
+                        <p class="hero-desc">
+                            Venture into the precarious canopy. Extrude tensile silk lines, swing across dizzying gaps, cling to swaying boughs, and feel the adrenaline rise as you scale higher... or the pure rage as you fall all the way back down.
+                        </p>
+                        <div class="hero-actions-row">
+                            <a href="https://store.steampowered.com" target="_blank" rel="noopener noreferrer" class="btn-big-sketch primary">
+                                <img src="../Images/Steam_logo.svg" alt="" width="22" height="22">
+                                Wishlist on Steam
+                            </a>
+                            <a href="#news" class="btn-big-sketch secondary">
+                                Check It Out or Play Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Media Box: Hero GIF / Video (image2.png) -->
+                    <div class="hero-media-box" title="Click to watch gameplay preview">
+                        <div class="crossed-box-bg"></div>
+                        <div class="media-inner-content">
+                            <div class="play-circle">▶</div>
+                            <h3>Hero GIF / Video</h3>
+                            <p>2.5D Physics-Based Silk Swing Gameplay</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News & Updates Section (image.png & image2.png) -->
+            <section class="news-section" id="news">
+                <h3 class="news-heading">news &amp; updates</h3>
+
+                <div class="news-grid">
+                    <!-- Card 1 -->
+                    <article class="news-card">
+                        <div class="sketch-thumb-placeholder">
+                            <svg class="cross-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <line x1="0" y1="0" x2="100" y2="100" stroke="#222" stroke-width="1.5" />
+                                <line x1="100" y1="0" x2="0" y2="100" stroke="#222" stroke-width="1.5" />
+                            </svg>
+                            <span class="thumb-badge">STEAM ANNOUNCEMENT</span>
+                        </div>
+                        <h4>Official Steam Page Announcement</h4>
+                        <p>Thread Carefully is now listed on Steam! Wishlist now to support our student development team and receive notification for the upcoming free demo release.</p>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="news-card">
+                        <div class="sketch-thumb-placeholder">
+                            <svg class="cross-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <line x1="0" y1="0" x2="100" y2="100" stroke="#222" stroke-width="1.5" />
+                                <line x1="100" y1="0" x2="0" y2="100" stroke="#222" stroke-width="1.5" />
+                            </svg>
+                            <span class="thumb-badge">DEVLOG #3</span>
+                        </div>
+                        <h4>Tuning Silk-Swing Physics &amp; Tension</h4>
+                        <p>We refined our 2.5D pendulum mechanics, momentum transfer, and tactile silk grip simulation so every near-miss and fall feels completely physics-driven.</p>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="news-card">
+                        <div class="sketch-thumb-placeholder">
+                            <svg class="cross-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <line x1="0" y1="0" x2="100" y2="100" stroke="#222" stroke-width="1.5" />
+                                <line x1="100" y1="0" x2="0" y2="100" stroke="#222" stroke-width="1.5" />
+                            </svg>
+                            <span class="thumb-badge">COMMUNITY</span>
+                        </div>
+                        <h4>HdM Stuttgart Student Showcase</h4>
+                        <p>Our team presented the latest build at Hochschule der Medien MediaNight! Check out playtester reactions and funny rage compilations on our TikTok &amp; YouTube.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <p>&copy; 2026 Thread Carefully Team &bull; Hochschule der Medien (HdM Stuttgart). All rights reserved.</p>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="who-we-are.html">Who We Are?</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="legal-privacy.html">Legal &amp; Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script src="../JS/main.js"></script>
+</body>
+</html>

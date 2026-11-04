@@ -1,0 +1,1217 @@
+/* ===================================================================
+   Thread Carefully - Main Stylesheet
+   Faithfully adapted from hand-drawn concept sketches
+   Theme: "Scale. Fall. Rage. Repeat." - 2.5D Physics Swing Adventure
+   Interactive Feature: El propio gusano de seda baja del menú
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Dokdo&display=swap');
+
+:root {
+    --bg-paper: #f7f5ed;
+    --bg-paper-card: #fdfcf9;
+    --bg-paper-alt: #f0ede1;
+    --border-sketch: #222222;
+    --border-light: #444444;
+    
+    --text-pencil: #1f1f1f;
+    --text-muted: #555555;
+    --text-subtle: #777777;
+    
+    --accent-green: #3d6a45;
+    --accent-green-hover: #2e5234;
+    --accent-steam: #171a21;
+    --accent-steam-hover: #2a475e;
+    --accent-gold: #e2a03f;
+    --silk-thread-color: #ffffff;
+    
+    --font-sketch: 'Patrick Hand', 'Caveat', cursive, sans-serif;
+    --font-title: 'Caveat', 'Dokdo', cursive, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    --sketch-border: 2px solid var(--border-sketch);
+    --sketch-shadow: 3px 3px 0px var(--border-sketch);
+    --sketch-shadow-hover: 5px 5px 0px var(--border-sketch);
+    --radius-sketch: 6px;
+    --radius-round: 999px;
+    
+    --transition: all 0.2s ease-in-out;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-paper);
+    color: var(--text-pencil);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background-image: 
+        radial-gradient(#dedac9 1px, transparent 1px),
+        radial-gradient(#dedac9 1px, var(--bg-paper) 1px);
+    background-size: 28px 28px;
+    background-position: 0 0, 14px 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sketch);
+    color: var(--text-pencil);
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+a {
+    color: var(--text-pencil);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ===================================================================
+   Header & Navbar
+   =================================================================== */
+.site-header {
+    position: relative;
+    z-index: 200;
+    background: var(--bg-paper);
+    border-bottom: var(--sketch-border);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand-title {
+    font-family: var(--font-title);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-pencil);
+    text-transform: uppercase;
+}
+
+.nav-center-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 24px;
+}
+
+.nav-center-links a {
+    font-family: var(--font-sketch);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-pencil);
+    padding: 4px 6px;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-center-links a:hover,
+.nav-center-links a.active {
+    border-bottom: 2px solid var(--border-sketch);
+    color: var(--accent-green);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Wishlist on Steam button */
+.btn-wishlist {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #eae7da;
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: var(--sketch-shadow);
+    padding: 8px 18px;
+    font-family: var(--font-sketch);
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-pencil);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-wishlist:hover {
+    background: #171a21;
+    color: #ffffff;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--sketch-shadow-hover);
+}
+
+.btn-wishlist img {
+    width: 20px;
+    height: 20px;
+    transition: filter 0.2s ease;
+}
+
+.btn-wishlist:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.lang-selector {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sketch);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-pencil);
+    cursor: pointer;
+}
+
+/* ===================================================================
+   El propio Gusano de Seda bajando del menú con animación
+   =================================================================== */
+.silkworm-nav-unit {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    z-index: 300;
+}
+
+/* Trigger Button base */
+.silkworm-btn-base {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-paper-card);
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: var(--sketch-shadow);
+    padding: 8px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: var(--transition);
+}
+
+.silkworm-btn-base:hover,
+.silkworm-nav-unit.is-active .silkworm-btn-base {
+    background: #ffffff;
+    transform: translate(-1px, -1px);
+    box-shadow: var(--sketch-shadow-hover);
+}
+
+.silkworm-btn-label {
+    font-family: var(--font-sketch);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-pencil);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* El propio gusano de seda (animado, cae y baja del menú) */
+.silkworm-actor-mascot {
+    position: absolute;
+    /* Sit vertically centred inside the button, offset left so it peeks out */
+    top: 50%;
+    left: 8px;
+    width: 58px;
+    height: auto;
+    z-index: 380;
+    cursor: pointer;
+    transform-origin: top center;
+    /* Base position: centred in button, gentle resting bob via animation */
+    filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.2));
+    animation: silkwormResting 3s ease-in-out infinite alternate;
+    /* translateY(-50%) keeps it centred; animation will add small offsets on top */
+}
+
+.silkworm-actor-mascot img {
+    width: 100%;
+    height: auto;
+}
+
+/* Gentle idle bob while resting inside the button */
+@keyframes silkwormResting {
+    0%   { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(calc(-50% - 4px)) rotate(-4deg); }
+}
+
+/* Hilo de seda vertical que se estira cuando el gusano cae */
+.silkworm-drop-thread {
+    position: absolute;
+    /* Align thread with the centre-left of the button, just below the top edge */
+    top: 50%;
+    left: 36px;
+    width: 2.5px;
+    height: 0px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #ffffff,
+        #ffffff 5px,
+        #222222 5px,
+        #222222 8px
+    );
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.95);
+    z-index: 360;
+    pointer-events: none;
+    /* Thread grows at the same pace as the worm descends */
+    transition: height 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* CUANDO PASA EL RATÓN (HOVER): EL GUSANO SE DEJA CAER PROGRESIVAMENTE */
+.silkworm-nav-unit:hover .silkworm-actor-mascot,
+.silkworm-nav-unit.is-active .silkworm-actor-mascot {
+    /* Cancel resting animation, run the multi-step descent instead */
+    animation: silkwormDescent 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards,
+               silkwormHangingSwing 2.6s ease-in-out infinite alternate 1.85s;
+}
+
+/* Multi-step, progressive descent — silkworm lingers at each menu item */
+@keyframes silkwormDescent {
+    0%   { transform: translateY(-50%)          rotate(0deg);   }
+    15%  { transform: translateY(30px)          rotate(6deg);   }
+    28%  { transform: translateY(80px)          rotate(-5deg);  }
+    40%  { transform: translateY(130px)         rotate(7deg);   }
+    55%  { transform: translateY(175px)         rotate(-4deg);  }
+    70%  { transform: translateY(220px)         rotate(8deg);   }
+    85%  { transform: translateY(258px)         rotate(-5deg);  }
+    100% { transform: translateY(282px)         rotate(10deg);  }
+}
+
+/* Gentle pendulum swing once fully descended */
+@keyframes silkwormHangingSwing {
+    0%   { transform: translateY(282px) rotate(10deg);  }
+    50%  { transform: translateY(286px) rotate(-8deg);  }
+    100% { transform: translateY(280px) rotate(11deg);  }
+}
+
+.silkworm-nav-unit:hover .silkworm-drop-thread,
+.silkworm-nav-unit.is-active .silkworm-drop-thread {
+    height: 295px;
+    transition: height 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Contenedor del desplegable */
+.silkworm-dropdown-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 290px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-16px);
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 350;
+}
+
+.silkworm-nav-unit:hover .silkworm-dropdown-panel,
+.silkworm-nav-unit.is-active .silkworm-dropdown-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Tarjeta del menú */
+.silkworm-menu-sheet {
+    background: var(--bg-paper-card);
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: 4px 6px 0px var(--border-sketch);
+    padding: 16px 14px 14px 40px; /* Margen para el hilo y el gusano que baja */
+    position: relative;
+    overflow: hidden;
+}
+
+.silkworm-menu-sheet::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 90px;
+    height: 90px;
+    background: radial-gradient(circle, rgba(61, 106, 69, 0.1), transparent 70%);
+    pointer-events: none;
+}
+
+.silkworm-menu-title {
+    font-family: var(--font-sketch);
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-subtle);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.silkworm-items-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* LAS OPCIONES DEL MENÚ VAN BAJANDO */
+.silkworm-drop-item {
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.silkworm-nav-unit:hover .silkworm-drop-item,
+.silkworm-nav-unit.is-active .silkworm-drop-item {
+    transform: translateY(0);
+    opacity: 1;
+    /* Stagger each item to match the worm passing it during its 1.8s descent */
+    transition-delay: calc(var(--drop-order) * 300ms);
+}
+
+.silkworm-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    background: var(--bg-paper);
+    border: 1.5px solid var(--border-sketch);
+    border-radius: var(--radius-sketch);
+    box-shadow: 2px 2px 0px var(--border-sketch);
+    transition: var(--transition);
+}
+
+.silkworm-menu-link:hover,
+.silkworm-menu-link.active {
+    background: #ffffff;
+    border-color: var(--accent-green);
+    transform: translateX(4px);
+    box-shadow: 3px 3px 0px var(--accent-green);
+}
+
+.silkworm-menu-link .opt-icon {
+    font-size: 1.2rem;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.silkworm-menu-link .opt-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.silkworm-menu-link .opt-title {
+    font-family: var(--font-sketch);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-pencil);
+    line-height: 1.1;
+}
+
+.silkworm-menu-link .opt-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.silkworm-menu-link.steam-opt {
+    background: #171a21;
+}
+
+.silkworm-menu-link.steam-opt .opt-title {
+    color: #ffffff;
+}
+
+.silkworm-menu-link.steam-opt .opt-sub {
+    color: #9ab4c7;
+}
+
+.silkworm-menu-link.steam-opt:hover {
+    background: #2a475e;
+    box-shadow: 3px 3px 0px var(--border-sketch);
+}
+
+.silkworm-sheet-footer {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px dashed #cfcaba;
+    font-family: var(--font-sketch);
+    font-size: 0.92rem;
+    color: var(--text-subtle);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ===================================================================
+   Status Ticker Banner (from sketch image.png)
+   =================================================================== */
+.status-bar {
+    background: #ebe7d8;
+    border-bottom: var(--sketch-border);
+    padding: 8px 24px;
+    font-family: var(--font-sketch);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-pencil);
+}
+
+.status-bar-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-item .check {
+    color: #27793d;
+    font-weight: bold;
+}
+
+/* ===================================================================
+   Main Content Layout with Left Social Media Strip
+   =================================================================== */
+.page-wrapper {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.vertical-social-strip {
+    width: 64px;
+    border-right: var(--sketch-border);
+    background: var(--bg-paper-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.social-strip-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: var(--font-sketch);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-subtle);
+    margin-bottom: 8px;
+}
+
+.social-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sketch);
+    border: 1.5px solid transparent;
+    color: var(--text-pencil);
+    transition: var(--transition);
+}
+
+.social-icon-link img {
+    width: 22px;
+    height: 22px;
+    opacity: 0.85;
+    transition: var(--transition);
+}
+
+.social-icon-link:hover {
+    background: #e6e2d1;
+    border-color: var(--border-sketch);
+    transform: scale(1.15);
+}
+
+.social-icon-link:hover img {
+    opacity: 1;
+}
+
+.main-layout {
+    flex-grow: 1;
+    padding: 40px 36px 60px;
+    position: relative;
+}
+
+/* ===================================================================
+   Hero Section with Carousel Controls (from image.png & image2.png)
+   =================================================================== */
+.hero-container {
+    position: relative;
+    padding: 10px 40px;
+    margin-bottom: 50px;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-paper-card);
+    border: var(--sketch-border);
+    box-shadow: var(--sketch-shadow);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sketch);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sketch);
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: var(--transition);
+}
+
+.carousel-arrow:hover {
+    background: #ffffff;
+    transform: translateY(-50%) translate(-2px, -2px);
+    box-shadow: var(--sketch-shadow-hover);
+}
+
+.carousel-arrow.prev { left: -10px; }
+.carousel-arrow.next { right: -10px; }
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-text-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-main-title {
+    font-family: var(--font-title);
+    font-size: 4.4rem;
+    font-weight: 700;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--text-pencil);
+    margin-bottom: 12px;
+}
+
+.hero-tagline {
+    font-family: var(--font-sketch);
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-pencil);
+    margin-bottom: 10px;
+}
+
+.hero-mechanic-sub {
+    font-family: var(--font-sketch);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--accent-green);
+    margin-bottom: 16px;
+}
+
+.hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 540px;
+}
+
+.hero-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-big-sketch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 28px;
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: var(--sketch-shadow);
+    font-family: var(--font-sketch);
+    font-size: 1.35rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.btn-big-sketch.primary {
+    background: #ffffff;
+    color: var(--text-pencil);
+}
+
+.btn-big-sketch.primary:hover {
+    background: #171a21;
+    color: #ffffff;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--sketch-shadow-hover);
+}
+
+.btn-big-sketch.primary:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.btn-big-sketch.secondary {
+    background: #eae7da;
+    color: var(--text-pencil);
+}
+
+.btn-big-sketch.secondary:hover {
+    background: #ded9c7;
+    transform: translate(-2px, -2px);
+    box-shadow: var(--sketch-shadow-hover);
+}
+
+.hero-media-box {
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    background: var(--bg-paper-card);
+    box-shadow: var(--sketch-shadow);
+    aspect-ratio: 16 / 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.hero-media-box:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--sketch-shadow-hover);
+}
+
+.crossed-box-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+.crossed-box-bg::before,
+.crossed-box-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-top: 1.5px solid var(--border-sketch);
+}
+
+.crossed-box-bg::before {
+    transform: rotate(32deg);
+    transform-origin: center;
+}
+
+.crossed-box-bg::after {
+    transform: rotate(-32deg);
+    transform-origin: center;
+}
+
+.media-inner-content {
+    z-index: 2;
+    text-align: center;
+    padding: 24px;
+}
+
+.play-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: var(--sketch-border);
+    background: #ffffff;
+    box-shadow: var(--sketch-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 12px;
+    transition: var(--transition);
+}
+
+.hero-media-box:hover .play-circle {
+    transform: scale(1.1);
+    background: #171a21;
+    color: #ffffff;
+}
+
+.media-inner-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.media-inner-content p {
+    font-family: var(--font-sketch);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* ===================================================================
+   News & Updates Section (from image.png & image2.png)
+   =================================================================== */
+.news-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: var(--sketch-border);
+}
+
+.news-heading {
+    font-family: var(--font-sketch);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-transform: lowercase;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.news-card {
+    background: var(--bg-paper-card);
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: var(--sketch-shadow);
+    padding: 18px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--sketch-shadow-hover);
+}
+
+.sketch-thumb-placeholder {
+    width: 100%;
+    height: 140px;
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    background: #eae6d8;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sketch-thumb-placeholder svg.cross-lines {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.sketch-thumb-placeholder .thumb-badge {
+    position: relative;
+    z-index: 2;
+    background: #ffffff;
+    border: var(--sketch-border);
+    padding: 4px 12px;
+    font-family: var(--font-sketch);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.news-card h4 {
+    font-size: 1.35rem;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.news-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ===================================================================
+   Who We Are? Subpage Styles (from image4.png)
+   =================================================================== */
+.who-we-are-container {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.sketch-subpage-title {
+    font-family: var(--font-title);
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1;
+}
+
+.sketch-subpage-intro {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 36px;
+}
+
+.team-2x2-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.team-2x2-card {
+    background: var(--bg-paper-card);
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: var(--sketch-shadow);
+    padding: 20px;
+    transition: var(--transition);
+}
+
+.team-2x2-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--sketch-shadow-hover);
+}
+
+.team-photo-box {
+    width: 100%;
+    height: 180px;
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    background: #eae6d8;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-2x2-card h4 {
+    font-size: 1.45rem;
+    margin-bottom: 4px;
+}
+
+.team-role {
+    font-family: var(--font-sketch);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-green);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.team-2x2-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* ===================================================================
+   FAQ & System Requirements Subpage Styles (from image5.jpg)
+   =================================================================== */
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sketch-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.sketch-faq-item {
+    background: var(--bg-paper-card);
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: 2px 2px 0px var(--border-sketch);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.sketch-faq-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 16px 20px;
+    font-family: var(--font-sketch);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-pencil);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-align: left;
+}
+
+.sketch-faq-question .faq-plus {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--text-pencil);
+    transition: transform 0.25s ease;
+}
+
+.sketch-faq-item.active .faq-plus {
+    transform: rotate(45deg);
+}
+
+.sketch-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    transition: max-height 0.3s ease, padding 0.25s ease;
+}
+
+.sketch-faq-item.active .sketch-faq-answer {
+    max-height: 400px;
+    padding: 0 20px 18px 20px;
+}
+
+.sketch-divider-line {
+    border: none;
+    border-top: var(--sketch-border);
+    margin: 40px 0;
+}
+
+.sys-req-box {
+    background: var(--bg-paper-card);
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: var(--sketch-shadow);
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    position: relative;
+}
+
+.sys-req-box::after {
+    content: '';
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 50%;
+    width: 2px;
+    background: var(--border-sketch);
+}
+
+.sys-col h4 {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    border-bottom: 1.5px dashed var(--border-light);
+    padding-bottom: 6px;
+}
+
+.sys-specs-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.98rem;
+    color: var(--text-muted);
+}
+
+.sys-specs-list strong {
+    color: var(--text-pencil);
+    font-family: var(--font-sketch);
+    font-size: 1.15rem;
+}
+
+/* ===================================================================
+   Legal & Privacy Subpage (from image3.png)
+   =================================================================== */
+.legal-container {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.legal-section-item {
+    margin-bottom: 32px;
+    background: var(--bg-paper-card);
+    border: var(--sketch-border);
+    border-radius: var(--radius-sketch);
+    box-shadow: var(--sketch-shadow);
+    padding: 24px;
+}
+
+.legal-section-item h3 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    border-bottom: 1.5px dashed var(--border-light);
+    padding-bottom: 6px;
+}
+
+.legal-section-item p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+/* ===================================================================
+   Footer
+   =================================================================== */
+.site-footer {
+    background: #eae7da;
+    border-top: var(--sketch-border);
+    padding: 40px 0 24px;
+    margin-top: auto;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-left p {
+    font-family: var(--font-sketch);
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.footer-links a {
+    font-family: var(--font-sketch);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-pencil);
+}
+
+.footer-links a:hover {
+    color: var(--accent-green);
+    text-decoration: underline;
+}
+
+/* ===================================================================
+   Responsive Adjustments
+   =================================================================== */
+@media (max-width: 980px) {
+    .nav-center-links {
+        display: none;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-2x2-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sys-req-box {
+        grid-template-columns: 1fr;
+    }
+
+    .sys-req-box::after {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .vertical-social-strip {
+        display: none;
+    }
+
+    .hero-main-title {
+        font-size: 3rem;
+    }
+
+    .hero-tagline {
+        font-size: 1.6rem;
+    }
+
+    .hero-container {
+        padding: 0;
+    }
+
+    .carousel-arrow {
+        display: none;
+    }
+
+    .silkworm-dropdown-panel {
+        width: 260px;
+    }
+}

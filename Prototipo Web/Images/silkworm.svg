@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Silk drop line from above -->
+  <line x1="60" y1="0" x2="60" y2="28" stroke="#f4f4f4" stroke-width="2.5" stroke-dasharray="3 2" filter="drop-shadow(0 0 2px #fff)"/>
+  
+  <!-- Silkworm body segments (chubby, cute, segmented) -->
+  <g id="silkworm-body" filter="drop-shadow(1px 2px 0px #222222)">
+    <!-- Rear segment (tail with cute silk spinneret) -->
+    <ellipse cx="28" cy="46" rx="14" ry="12" fill="#eaf2e3" stroke="#222222" stroke-width="2"/>
+    <path d="M14 46 C12 43 10 46 8 47" stroke="#222222" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Body Segment 2 -->
+    <ellipse cx="44" cy="48" rx="15" ry="14" fill="#f1f7eb" stroke="#222222" stroke-width="2"/>
+    <!-- Segment creases -->
+    <path d="M44 36 C42 42 42 54 44 60" stroke="#c5dac0" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Body Segment 3 -->
+    <ellipse cx="62" cy="47" rx="16" ry="15" fill="#f7fbf2" stroke="#222222" stroke-width="2"/>
+    <path d="M62 34 C60 41 60 53 62 60" stroke="#c5dac0" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Body Segment 4 -->
+    <ellipse cx="80" cy="45" rx="16" ry="15" fill="#f1f7eb" stroke="#222222" stroke-width="2"/>
+    <path d="M80 32 C78 40 78 50 80 58" stroke="#c5dac0" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Head Segment -->
+    <ellipse cx="98" cy="42" rx="17" ry="16" fill="#ffffff" stroke="#222222" stroke-width="2.2"/>
+    
+    <!-- Cute Mulberry leaf on head or mouth -->
+    <path d="M106 28 C114 24 118 30 114 36 C108 38 104 32 106 28 Z" fill="#6ba86f" stroke="#222222" stroke-width="1.5"/>
+    <path d="M107 31 L112 34" stroke="#48784b" stroke-width="1.2"/>
+    
+    <!-- Cute Eyes -->
+    <circle cx="94" cy="38" r="3.5" fill="#222222"/>
+    <circle cx="93" cy="37" r="1.2" fill="#ffffff"/>
+    
+    <circle cx="106" cy="39" r="3.5" fill="#222222"/>
+    <circle cx="105" cy="38" r="1.2" fill="#ffffff"/>
+    
+    <!-- Blush cheeks -->
+    <ellipse cx="90" cy="45" rx="3.5" ry="2" fill="#f5b8b8" opacity="0.8"/>
+    <ellipse cx="107" cy="46" rx="3.5" ry="2" fill="#f5b8b8" opacity="0.8"/>
+    
+    <!-- Happy smile producing silk thread -->
+    <path d="M96 46 Q100 50 104 46" stroke="#222222" stroke-width="2" stroke-linecap="round" fill="none"/>
+    
+    <!-- Tiny crawling feet / prolegs -->
+    <ellipse cx="34" cy="58" rx="4" ry="5" fill="#d9e8d3" stroke="#222222" stroke-width="1.8"/>
+    <ellipse cx="50" cy="61" rx="4" ry="5" fill="#d9e8d3" stroke="#222222" stroke-width="1.8"/>
+    <ellipse cx="68" cy="61" rx="4" ry="5" fill="#d9e8d3" stroke="#222222" stroke-width="1.8"/>
+    <ellipse cx="86" cy="59" rx="4" ry="5" fill="#d9e8d3" stroke="#222222" stroke-width="1.8"/>
+  </g>
+</svg>
