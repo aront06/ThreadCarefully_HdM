@@ -106,10 +106,11 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 24px;
+    padding: 8px 24px;      /* ligero más estrecho para que la imagen no quede apretada */
     max-width: 1280px;
     margin: 0 auto;
     position: relative;
+    min-height: 72px;       /* altura mínima fija para que la imagen tenga espacio */
 }
 
 .nav-left {
@@ -246,7 +247,7 @@ img {
     gap: 6px;
 }
 
-/* El propio gusano de seda (animado, cae y baja del menú) */
+/* El propio gusano de seda (animado, cae y sube por su hilo) */
 .silkworm-actor-mascot {
     position: absolute;
     /* Sit vertically centred inside the button, offset left so it peeks out */
@@ -257,10 +258,9 @@ img {
     z-index: 380;
     cursor: pointer;
     transform-origin: top center;
-    /* Base position: centred in button, gentle resting bob via animation */
     filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.2));
+    /* En reposo, o por defecto cuando se repliega hacia arriba */
     animation: silkwormResting 3s ease-in-out infinite alternate;
-    /* translateY(-50%) keeps it centred; animation will add small offsets on top */
 }
 
 .silkworm-actor-mascot img {
@@ -274,14 +274,17 @@ img {
     100% { transform: translateY(calc(-50% - 4px)) rotate(-4deg); }
 }
 
-/* Hilo de seda vertical que se estira cuando el gusano cae */
+/* -------------------------------------------------------
+   Silk thread — always transitions so it retracts cleanly
+   The JS writes --thread-height when open, removes it on close
+   ------------------------------------------------------- */
 .silkworm-drop-thread {
     position: absolute;
-    /* Align thread with the centre-left of the button, just below the top edge */
     top: 50%;
     left: 36px;
     width: 2.5px;
-    height: 0px;
+    /* Use JS-set custom property; falls back to 0 when not set (= retracted) */
+    height: var(--thread-height, 0px);
     background: repeating-linear-gradient(
         to bottom,
         #ffffff,
@@ -292,41 +295,45 @@ img {
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.95);
     z-index: 360;
     pointer-events: none;
-    /* Thread grows at the same pace as the worm descends */
-    transition: height 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* Transition applies in BOTH directions (open and close) */
+    transition: height 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* CUANDO PASA EL RATÓN (HOVER): EL GUSANO SE DEJA CAER PROGRESIVAMENTE */
-.silkworm-nav-unit:hover .silkworm-actor-mascot,
+/* 1) CUANDO SE ABRE EL MENÚ: EL GUSANO SE DEJA CAER PROGRESIVAMENTE */
 .silkworm-nav-unit.is-active .silkworm-actor-mascot {
-    /* Cancel resting animation, run the multi-step descent instead */
-    animation: silkwormDescent 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards,
-               silkwormHangingSwing 2.6s ease-in-out infinite alternate 1.85s;
+    animation: silkwormDescent 1.4s cubic-bezier(0.33, 1, 0.68, 1) forwards,
+               silkwormHangingSwing 2.6s ease-in-out infinite alternate 1.42s;
 }
 
-/* Multi-step, progressive descent — silkworm lingers at each menu item */
+/* 2) CUANDO SE CIERRA EL MENÚ: EL GUSANO TREPA / SE REPLIEGA HACIA ARRIBA */
+.silkworm-nav-unit.is-retracting .silkworm-actor-mascot {
+    animation: silkwormAscent 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Multi-step, progressive descent — worm wiggles fluidamente a medida que baja hasta la altura de Steam */
 @keyframes silkwormDescent {
-    0%   { transform: translateY(-50%)          rotate(0deg);   }
-    15%  { transform: translateY(30px)          rotate(6deg);   }
-    28%  { transform: translateY(80px)          rotate(-5deg);  }
-    40%  { transform: translateY(130px)         rotate(7deg);   }
-    55%  { transform: translateY(175px)         rotate(-4deg);  }
-    70%  { transform: translateY(220px)         rotate(8deg);   }
-    85%  { transform: translateY(258px)         rotate(-5deg);  }
-    100% { transform: translateY(282px)         rotate(10deg);  }
+    0%   { transform: translateY(-50%)                                                rotate(0deg);  }
+    20%  { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) * 0.22))      rotate(4deg);  }
+    40%  { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) * 0.45))      rotate(-4deg); }
+    60%  { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) * 0.68))      rotate(5deg);  }
+    80%  { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) * 0.88))      rotate(-3deg); }
+    100% { transform: translateY(calc(-50% + var(--worm-drop-px, 235px)))             rotate(6deg);  }
+}
+
+/* Subida / repliegue gradual coordinado con la contracción del hilo */
+@keyframes silkwormAscent {
+    0%   { transform: translateY(calc(-50% + var(--worm-drop-px, 235px)))             rotate(6deg);  }
+    25%  { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) * 0.72))      rotate(-4deg); }
+    50%  { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) * 0.45))      rotate(4deg);  }
+    75%  { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) * 0.20))      rotate(-2deg); }
+    100% { transform: translateY(-50%)                                                rotate(0deg);  }
 }
 
 /* Gentle pendulum swing once fully descended */
 @keyframes silkwormHangingSwing {
-    0%   { transform: translateY(282px) rotate(10deg);  }
-    50%  { transform: translateY(286px) rotate(-8deg);  }
-    100% { transform: translateY(280px) rotate(11deg);  }
-}
-
-.silkworm-nav-unit:hover .silkworm-drop-thread,
-.silkworm-nav-unit.is-active .silkworm-drop-thread {
-    height: 295px;
-    transition: height 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    0%   { transform: translateY(calc(-50% + var(--worm-drop-px, 235px))) rotate(6deg); }
+    50%  { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) + 3px)) rotate(-5deg); }
+    100% { transform: translateY(calc(-50% + var(--worm-drop-px, 235px) - 2px)) rotate(7deg); }
 }
 
 /* Contenedor del desplegable */
@@ -402,8 +409,8 @@ img {
 .silkworm-nav-unit.is-active .silkworm-drop-item {
     transform: translateY(0);
     opacity: 1;
-    /* Stagger each item to match the worm passing it during its 1.8s descent */
-    transition-delay: calc(var(--drop-order) * 300ms);
+    /* Stagger each item to match the worm passing it during descent */
+    transition-delay: calc(var(--drop-order) * 160ms);
 }
 
 .silkworm-menu-link {
@@ -481,6 +488,32 @@ img {
     display: flex;
     align-items: center;
     gap: 6px;
+}
+
+/* ===================================================================
+   Silkworms image banner — centrado dentro del navbar
+   =================================================================== */
+.nav-banner {
+    flex: 1;                   /* ocupa el espacio central entre nav-left y nav-right */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100%;
+    padding: 0 16px;
+    pointer-events: none;      /* no interfiere con clicks del navbar */
+}
+
+.nav-banner img {
+    height: 56px;              /* se ajusta a la altura del navbar */
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    /* Blend suave con el fondo papel */
+    mix-blend-mode: multiply;
+    opacity: 0.92;
 }
 
 /* ===================================================================
